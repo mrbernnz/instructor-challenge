@@ -10,16 +10,34 @@ const fetchMovies = async e => {
 };
 
 const createMovieList = search => {
-  let ul = document.querySelector('ul');
+  let main = document.querySelector('main');
+  let ul = document.createElement('ul');
+  ul.setAttribute('class', 'movies collection');
+  main.appendChild(ul);
 
   search.map(movie => {
     let li = document.createElement('li');
     let a = document.createElement('a');
+    let img = document.createElement('img');
     let btn = document.createElement('button');
+    let i = document.createElement('i');
 
+    img.setAttribute('src', movie.Poster);
+    img.setAttribute('alt', 'Movie Poster');
+    img.setAttribute('class', 'circle');
     a.setAttribute('href', `https://www.imdb.com/title/${movie.imdbID}`);
+    a.setAttribute('class', `title`);
     a.text = movie.Title;
-    btn.innerText = 'Favorite';
+    btn.setAttribute(
+      'class',
+      'btn-floating btn-large waves-effect waves-light blue secondary-content'
+    );
+    i.setAttribute('class', 'material-icons');
+    i.innerText = 'grade';
+    li.setAttribute('class', 'collection-item');
+
+    btn.appendChild(i);
+    li.appendChild(img);
     li.appendChild(a);
     li.appendChild(btn);
     ul.appendChild(li);
@@ -27,9 +45,11 @@ const createMovieList = search => {
 };
 
 const postFavorites = async e => {
+  console.log(e.target.parentElement);
+
   let data = {
-    name: e.target.previousSibling.text,
-    oid: e.target.previousSibling.href.split('/')[4]
+    oid: e.target.parentElement.previousSibling.href.split('/')[4],
+    name: e.target.parentElement.previousSibling.text
   };
   let headers = new Headers({
     'Content-Type': 'application/json'
@@ -40,7 +60,7 @@ const postFavorites = async e => {
     headers,
     body: JSON.stringify(data)
   });
-  let json = response.json();
+  let json = await response.json();
   return json;
 };
 
