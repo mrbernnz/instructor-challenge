@@ -5,7 +5,7 @@
  */
 const fetchMovies = async e => {
   let response = await fetch(
-    `http:www.omdbapi.com/?i=tt3896198&apikey=f33eeb6&s=${
+    `https://www.omdbapi.com/?i=tt3896198&apikey=f33eeb6&s=${
       e.target.elements[0].value
     }`
   );
@@ -62,8 +62,6 @@ const createMovieList = search => {
  * @returns {Promise<Object>} A promise from the targeted element.
  */
 const postFavorites = async e => {
-  console.log(e.target.parentElement);
-
   let data = {
     oid: e.target.parentElement.previousSibling.href.split('/')[4],
     name: e.target.parentElement.previousSibling.text
@@ -103,7 +101,7 @@ const onSubmit = e => {
 
     listenToPost();
   });
-  e.preDefault();
+  e.preventDefault();
   e.target.reset();
 };
 
