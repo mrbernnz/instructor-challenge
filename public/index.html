@@ -2,25 +2,39 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script defer src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
     <title>Movie Search</title>
   </head>
   <body>
 
     <nav>
-      <a href="favorites">Favorite</a>
+      <div class="nav-wrapper blue">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li>
+            <a href="/favorites">Favorite</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
-    <form>
-      <label for="search">Search Movies</label>
-      <input type="search" name=search placeholder='Search Movies'>
-      <input type=submit value=Submit />
-    </form>
+    <main class=container>
+      <div class=row>
+      <form class='col s12'>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="search">Search Movies</label>
+            <input id=search class=validate type=search name=search>
+          </div>
+        </div>
+      </form>
+      </div>
+    </main>
 
-    <section>
-      <h1>Movies</h1>
-      <ul></ul>
-    </section>
-
-    <script src=./index.js></script>
+    <script defer src=./index.js></script>
   </body>
 </html>
